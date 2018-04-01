@@ -1,0 +1,10 @@
+{
+  "name": "Ofaly task",
+  "description": "Scrap twitter or facebook",
+  "image": "heroku/python",
+  "repository": "",
+  "keywords": ["python", "flask" ],
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
