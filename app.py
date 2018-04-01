@@ -1,7 +1,9 @@
 import os
 
-from flask import Flask
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
+
+import twitter
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////tmp/flask_app.db')
 
@@ -35,12 +37,26 @@ def get_users():
 
 @app.route('/users/<user_id>')
 def get_user(user_id):
-    return "user with id: {}".format(user_id)
+    local = request.args.get('local', False)
+
+    if local:
+        return "user with id: {} from db".format(user_id)
+    else:
+        user_info = twitter.user_info(user_id)
+        # save to db
+        return "user with id: {}".format(user_id)
 
 
 @app.route('/users/<user_id>/posts')
 def get_posts(user_id):
-    return "posts of user with id: {}".format(user_id)
+    local = request.args.get('local', False)
+
+    if local:
+        return "posts of user with id: {} from db".format(user_id)
+    else:
+        tweets = twitter.tweets(user_id)
+        # save to db
+        return "posts of user with id: {}".format(user_id)
 
 
 if __name__ == '__main__':
