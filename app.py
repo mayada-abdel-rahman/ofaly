@@ -20,6 +20,13 @@ class User(db.Model):
     email = db.Column(db.String(100))
     tweets = db.relationship('Tweet', backref='user', lazy=True)
 
+    @classmethod
+    def create_from_dict(cls, user_info):
+        """
+        Creates user object and save it from user_info  retrieved from twitter client.
+        """
+        pass
+
 
 class Tweet(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -27,6 +34,13 @@ class Tweet(db.Model):
     retweet = db.Column(db.Integer, default=0)
     favorite = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    @classmethod
+    def create_from_list(cls, tweets_list, user_id):
+        """
+        Creates and saves list of tweets for a specific user.
+        """
+        pass
 
 
 # ------------------- Views -------------------
@@ -43,7 +57,7 @@ def get_user(user_id):
         return "user with id: {} from db".format(user_id)
     else:
         user_info = twitter.user_info(user_id)
-        # save to db
+        User.create_from_dict(user_info)
         return "user with id: {}".format(user_id)
 
 
@@ -55,7 +69,7 @@ def get_posts(user_id):
         return "posts of user with id: {} from db".format(user_id)
     else:
         tweets = twitter.tweets(user_id)
-        # save to db
+        Tweet.create_from_list(tweets, user_id)
         return "posts of user with id: {}".format(user_id)
 
 
