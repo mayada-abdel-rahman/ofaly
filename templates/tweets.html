@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Tweets Page{% endblock %}
+
+{% block content %}
+    {% if tweets %}
+        <ul>
+        {% for tweet in tweets %}
+            <p>{{ tweet.content }} -- {{ tweet.retweet }} -- {{ tweet.favorite }}</p>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tweets for this user!</p>
+    {% endif %}
+{% endblock %}

@@ -1,5 +1,12 @@
 {% extends "layout.html" %}
 {% block title %}User Page{% endblock %}
 
-{% block content %}   
+{% block content %}
+    {% if user %}
+        <p>name: {{ user.name }}</p>
+        <p>twitter id: {{ user.provider_user_id }}</p>
+        <a href="{{ url_for('get_posts', user_id=user.provider_user_id) }}">Go to tweets list</a>
+    {% else %}
+        <p>No user exists for this id!</p>
+    {% endif %}
 {% endblock %}
