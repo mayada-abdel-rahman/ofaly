@@ -22,8 +22,8 @@ class User(db.Model):
     @classmethod
     def create_from_dict(cls, user_info):
         """
-       Creates user object and save it from user_info  retrieved from twitter client.
-       """
+      Creates user object and save it from user_info  retrieved from twitter client.
+      """
 
         id_str = user_info.get('id_str')
         user = cls.query.filter_by(provider_user_id=id_str).first()
@@ -56,8 +56,8 @@ class Tweet(db.Model):
     @classmethod
     def create_from_list(cls, tweets_list, user_id):
         """
-       Creates and saves list of tweets for a specific user.
-       """
+      Creates and saves list of tweets for a specific user.
+      """
 
         # create list of tweets that don't exist in db.
         new_tweets = [
@@ -96,8 +96,7 @@ def get_user(user_id):
         user_info = twitter.user_info(user_id)
         User.create_from_dict(user_info)
 
-    user = User.query.filter_by(user_id=user_id).first()
-
+    user = User.query.filter_by(provider_user_id=user_id).first()
     return render_template('user.html', user=user)
 
 
@@ -110,9 +109,8 @@ def get_posts(user_id):
         tweets = twitter.tweets(user_id)
         Tweet.create_from_list(tweets, user_id)
 
-    tweets = Tweet.query.filter_by(user_id=user_id).first()
-
-    return render_template('user.html', tweets=tweets)
+    tweets = Tweet.query.filter_by(user_id=user_id).all()
+    return render_template('tweets.html', tweets=tweets)
 
 
 if __name__ == '__main__':
