@@ -6,24 +6,31 @@ waiting for twitter app approval.
 
 
 def user_info(user_id):
-    """Returns dictionary of user info"""
+    """Returns dictionary of user info
+
+    https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
+    """
 
     # fake data for testing.
     return {
-        'name': 'UserName',
-        'email': 'random@email.com'
+        "name": "Twitter Dev",
+        "id_str": "2244994945"
     }
 
 
 def tweets(user_id, limit=25):
-    """Returns list of tweets from user timeline, with limit of 25 by default"""
+    """Returns list of tweets from user timeline, with limit of 25 by default
+
+    https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.htmlhttps://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html
+    """
 
     # fake data for testing.
     tweets_lst = [
         {
-            'content': 'content{}'.format(i),
-            'retweet': i + 1,
-            'favorite': i + 1,
+            "id_str": str(848929357519241216 + i),
+            "text": "content{}".format(i),
+            "retweet_count": i + 1,
+            "favorite_count": i + 1,
         }
         for i in range(100)
     ]
