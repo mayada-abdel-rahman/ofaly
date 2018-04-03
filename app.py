@@ -17,7 +17,6 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     provider_user_id = db.Column(db.String(60), index=True)
     name = db.Column(db.String(100))
-    email = db.Column(db.String(100))
     tweets = db.relationship('Tweet', backref='user', lazy=True)
 
     @classmethod
@@ -30,6 +29,7 @@ class User(db.Model):
 
 class Tweet(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    provider_tweet_id = db.Column(db.String(60), index=True)
     content = db.Column(db.Text)
     retweet = db.Column(db.Integer, default=0)
     favorite = db.Column(db.Integer, default=0)
