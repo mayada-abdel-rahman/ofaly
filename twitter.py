@@ -8,21 +8,21 @@ waiting for twitter app approval.
 def user_info(user_id):
     """Returns dictionary of user info
 
-    https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
-    """
+   https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
+   """
 
     # fake data for testing.
     return {
-        "name": "Twitter Dev",
-        "id_str": "2244994945"
+        "name": "Twitter Dev - " + user_id,
+        "id_str": user_id
     }
 
 
 def tweets(user_id, limit=25):
     """Returns list of tweets from user timeline, with limit of 25 by default
 
-    https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html
-    """
+   https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html
+   """
 
     # fake data for testing.
     tweets_lst = [
